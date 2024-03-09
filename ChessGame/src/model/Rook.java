@@ -4,14 +4,13 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rook extends Piece
-{
+public class Rook extends Piece {
 
     //Contructor
-    public Rook(Point piecePosition, boolean white)
-    {
+    public Rook(Point piecePosition, boolean white) {
         this.piecePosition = piecePosition;
         this.white = white;
+        this.firstMove = true;
     }
 
     //Constructor for clone method
@@ -21,17 +20,13 @@ public class Rook extends Piece
         this.firstMove = firstMove;
     }
 
-    //Getters
     public boolean isFirstMove() {
         return firstMove;
     }
 
-    //Setters
     public void setFirstMove(boolean firstMove) {
         this.firstMove = firstMove;
     }
-
-    
 
     @Override
     public List<Move> calculateLegalMoves(Board board, boolean checkKing) {

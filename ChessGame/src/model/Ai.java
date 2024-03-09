@@ -17,7 +17,7 @@ public class Ai {
         return this.white;
     }
 
-    // Returns a move for the ai to make based on a min/max algorithm
+    // Returns a move for the ai to make based on a minimax algorithm
     public Move getMove(Board game) {
         if (game == null) {
             return null;
@@ -113,7 +113,7 @@ public class Ai {
         return beta;
     }
 
-    // Returns all the possible moves for the board.
+    // Returns all the legal moves for the board.
     private List<Move> getMoves(Board game) {
         List<Move> moves = new ArrayList<Move>();
 

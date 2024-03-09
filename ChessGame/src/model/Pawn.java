@@ -4,8 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pawn extends Piece
-{
+public class Pawn extends Piece {
 
     public boolean enPassantOK = false; //If this pawn can be captured by a "en Passant move"?
 
@@ -108,7 +107,7 @@ public class Pawn extends Piece
     private boolean IsEnemyPawnAt(Board board, Point pos) {
         Piece piece = board.getPieceAt(pos);
         if(piece != null) {
-            if (piece instanceof Pawn && piece.isWhite() !=  this.white) {
+            if (piece instanceof Pawn && piece.isWhite() != this.white) {
                 if (((Pawn)piece).enPassantOK) {
                 	return true;                	
                 }

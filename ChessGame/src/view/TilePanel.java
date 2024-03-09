@@ -22,7 +22,7 @@ public class TilePanel extends JPanel {
     private Point position;
 
     public TilePanel(Point position, final Board board) {
-        super(new GridBagLayout());
+        super(new GridBagLayout()); // để quản lý vị trí và cỡ của các thành phần (hình ảnh quân cờ) một cách linh hoạt.
         this.position = position;
         this.assignTileColor();
         this.assignPieceImage(board);
@@ -76,7 +76,7 @@ public class TilePanel extends JPanel {
                 BufferedImage image = ImageIO.read(new File(GameConstant.RESOURCE_PATH + color + name + ".png"));
 
                 // Sets the scale of image icon
-                Image img = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                Image img = image.getScaledInstance(65, 65, Image.SCALE_SMOOTH);
                 JLabel label = new JLabel(new ImageIcon(img));
                 this.add(label);
             } catch (IOException e) {

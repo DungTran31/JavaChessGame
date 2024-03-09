@@ -14,9 +14,6 @@ public class View extends JFrame {
     public View(Controller chessGame)  {
         super("Chess");
         this.chessGame = chessGame;
-    }
-
-    public void initComponents() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setMinimumSize(GameConstant.BOARD_PANEL_DIMENSION);
         this.setLocationRelativeTo(null);

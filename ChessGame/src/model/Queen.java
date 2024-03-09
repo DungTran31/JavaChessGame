@@ -4,8 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Queen extends Piece
-{
+public class Queen extends Piece {
 
     public Queen(Point piecePosition, boolean white) {
         this.piecePosition = piecePosition;

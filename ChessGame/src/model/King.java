@@ -4,8 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class King extends Piece
-{
+public class King extends Piece {
 
     public King(Point piecePosition, boolean white) {
         this.piecePosition = piecePosition;
@@ -85,7 +84,7 @@ public class King extends Piece
 
                     if (canCastle) {
                         int newKingX = (direction == 1) ? x + 2 : x - 2;
-                        int newRookX = (direction == 1) ? x + 1 : x - 1;
+                        int newRookX = (direction == 1) ? x + 1 : x - 1; // so với vị trí của King trước khi di chuyển
                         moves.add(new CastleMove(this, new Point(newKingX, y), p, new Point(newRookX, y)));
                     }
                 }

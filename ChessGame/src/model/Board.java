@@ -4,11 +4,7 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
 
 import constant.GameConstant;
@@ -141,7 +137,7 @@ public class Board implements Cloneable, Serializable {
             if (move.getMovedPiece() instanceof Pawn) {
                 if (Math.abs(move.getMovedPiece().getPiecePosition().y - move.getMoveTo().y) == 2) {
                     ((Pawn) move.getMovedPiece()).enPassantOK = true;
-                }
+                }	
             }
 
             move.getMovedPiece().moveTo(move.getMoveTo());
@@ -159,7 +155,7 @@ public class Board implements Cloneable, Serializable {
         this.whiteTurn = !whiteTurn;
     }
 
-    // Check valid spot
+    // Check valid position
     public boolean ValidPos(Point spot) {
         return (spot.x >= 0 && spot.x < GameConstant.GAME_SIZE) && (spot.y >= 0 && spot.y < GameConstant.GAME_SIZE);
     }
@@ -224,12 +220,12 @@ public class Board implements Cloneable, Serializable {
         return null;
     }
 
-    private void checkPawnPromotion(Piece pawn, boolean showdialog) {
+    private void checkPawnPromotion(Piece pawn, boolean humanMove) {
         if (pawn instanceof Pawn && (pawn.getPiecePosition().y == 0 || pawn.getPiecePosition().y == 7)) {
             Piece promotedPiece = null;
 
             // if ai, automatically promote to queen
-            if (!showdialog || (this.ai != null && ai.isWhite() == pawn.isWhite())) {
+            if (!humanMove || (this.ai != null && ai.isWhite() == pawn.isWhite())) {
                 promotedPiece = new Queen(pawn.getPiecePosition(), pawn.isWhite());
             } else {
                 // else, give the player a choice
