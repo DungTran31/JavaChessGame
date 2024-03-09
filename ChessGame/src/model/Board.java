@@ -1,7 +1,6 @@
 package model;
 
 import java.awt.Point;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import constant.GameConstant;
 
-public class Board implements Cloneable, Serializable {
+public class Board implements Cloneable {
     private ArrayList<Piece> pieces = new ArrayList<>();;
     private boolean whiteTurn;
     // To show checked king
