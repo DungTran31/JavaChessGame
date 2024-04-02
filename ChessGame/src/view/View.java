@@ -6,7 +6,11 @@ import constant.GameConstant;
 import controller.Controller;
 
 public class View extends JFrame {
-    // GUI
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2949165663709873410L;
+	// GUI
     private BoardPanel boardPanel;
     // Convert data sent from controller into GUI.
     private Controller chessGame;

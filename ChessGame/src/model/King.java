@@ -6,7 +6,12 @@ import java.util.List;
 
 public class King extends Piece {
 
-    public King(Point piecePosition, boolean white) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5582056274795996088L;
+
+	public King(Point piecePosition, boolean white) {
         this.piecePosition = piecePosition;
         this.white = white;
         this.firstMove = true;

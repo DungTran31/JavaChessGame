@@ -19,7 +19,11 @@ import model.Piece;
 import controller.Controller;
 
 public class TilePanel extends JPanel {
-    private Point position;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2514285753432436084L;
+	private Point position;
 
     public TilePanel(Point position, final Board board) {
         super(new GridBagLayout()); // để quản lý vị trí và cỡ của các thành phần (hình ảnh quân cờ) một cách linh hoạt.

@@ -10,7 +10,11 @@ import constant.GameConstant;
 import controller.Controller;
 
 public class BoardPanel extends JPanel {
-    private ArrayList<TilePanel> boardTiles;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4365241468362875755L;
+	private ArrayList<TilePanel> boardTiles;
     private Controller chessGame;
     public BoardPanel(final Controller chessGame) {
         super(new GridLayout(GameConstant.GAME_SIZE, GameConstant.GAME_SIZE));

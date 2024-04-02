@@ -1,9 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ai {
+public class Ai implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -780986336558187411L;
 	private boolean white;
     private int depth; // how depth the Ai will calculate?
 

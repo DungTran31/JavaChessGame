@@ -6,7 +6,12 @@ import java.util.List;
 
 public class Bishop extends Piece {
 
-    public Bishop(Point piecePosition, boolean white) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 223927281433952627L;
+
+	public Bishop(Point piecePosition, boolean white) {
         this.piecePosition = piecePosition;
         this.white = white;
     }

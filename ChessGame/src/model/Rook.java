@@ -6,7 +6,11 @@ import java.util.List;
 
 public class Rook extends Piece {
 
-    //Contructor
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1536611480167430800L;
+
     public Rook(Point piecePosition, boolean white) {
         this.piecePosition = piecePosition;
         this.white = white;

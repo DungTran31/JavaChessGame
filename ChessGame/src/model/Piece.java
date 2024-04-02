@@ -1,10 +1,13 @@
 package model;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.List;
 /*
 - "abstract": it cannot be directly instantiated, and must be subclassed to be used
 - "Cloneable": object can be cloned
+- "Serializable": object can be serialized or converted into a stream of bytes
+to be stored on disk or transmitted over a network.
 
 By implementing these interfaces, the Piece class provides support for creating
 new objects of the class through cloning, and also provides support for storing
@@ -12,8 +15,12 @@ or transmitting objects of the class in binary format.
  */
 
 
-public abstract class Piece implements Cloneable {
-    protected boolean white; //is this white piece ot not?
+public abstract class Piece implements Cloneable, Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected boolean white; //is this white piece ot not?
     protected Point piecePosition;
     protected boolean firstMove = true;
 

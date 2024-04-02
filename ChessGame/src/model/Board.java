@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,12 @@ import javax.swing.JOptionPane;
 
 import constant.GameConstant;
 
-public class Board implements Cloneable {
-    private ArrayList<Piece> pieces = new ArrayList<>();;
+public class Board implements Cloneable, Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3832214038983284610L;
+	private ArrayList<Piece> pieces = new ArrayList<>();;
     private boolean whiteTurn;
     // To show checked king
     private Piece inCheck = null;

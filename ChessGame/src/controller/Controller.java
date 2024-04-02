@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import javax.swing.SwingUtilities;
 import constant.GameStatus;
 import model.Ai;
 import model.Board;
+import model.Data;
 import model.Move;
 import model.Piece;
 import view.MenuBar;
@@ -23,11 +25,13 @@ import view.View;
 import view.TilePanel;
 
 public class Controller {
-    private GameStatus status;
+    @SuppressWarnings("unused")
+	private GameStatus status;
     private Board gameBoard;
     private View chessView;
     private MenuBar chessMenuBar;
-
+    private Data data;
+    
     private Piece selectedPiece = null;
     private Piece invalidSelectedPiece = null;
     private Piece lastmovedPiece = null;
@@ -69,11 +73,12 @@ public class Controller {
     }
 
     private void init() {
+    	this.status = GameStatus.STARTED;
         this.gameBoard = new Board(true);
         this.chessView = new View(this);
         this.chessMenuBar = new MenuBar();
         this.chessView.setJMenuBar(this.chessMenuBar);
-        this.status = GameStatus.STARTED;
+        this.data = Data.getInstance();
         this.selectedPiece = null;
         this.addTilesMouseListener(this.chessView.getBoardPanel().getBoardTiles());
         this.addMenuActionListener();
@@ -206,6 +211,19 @@ public class Controller {
     }
     
     private void addMenuActionListener() {
+    	this.chessMenuBar.getjMenuItem_Save().addActionListener(new ActionListener() {
+    		@Override
+    		public void actionPerformed(ActionEvent e) {
+    			save();
+    		}
+    		
+    	});
+    	this.chessMenuBar.getjMenuItem_Load().addActionListener(new ActionListener() {
+    		@Override
+    		public void actionPerformed(ActionEvent e) {
+    			load();
+    		}
+    	});
     	this.chessMenuBar.getjMenuItem_New1P().addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent e) {
@@ -232,6 +250,55 @@ public class Controller {
         });
     }
 
+    private void save() {
+    	// asks the user for a save name
+    	String name = JOptionPane.showInputDialog(this.chessView.getBoardPanel(), "Save file name: ");
+    	
+    	// if no name given or prompt exited, leave method
+    	if (name == null) {
+    		return;
+    	}
+    	try {
+    		data.saveBoard(name, this.gameBoard);
+    	} catch (Exception e) {
+    		String message = "Could not save game,";
+    		// inform the user, give exception details
+    		JOptionPane.showMessageDialog(this.chessView.getBoardPanel(), message, "Error!", JOptionPane.ERROR_MESSAGE);
+    	}
+    }
+    
+    protected void load() {
+    	File[] allSavedFile = data.getAllSavedFile();
+    	if (allSavedFile == null) {
+    		JOptionPane.showMessageDialog(this.chessView.getBoardPanel(), "No saved games found", "Load game",
+    				JOptionPane.INFORMATION_MESSAGE);
+    	} else {
+    		Object file = JOptionPane.showInputDialog(this.chessView.getBoardPanel(), "Select save file:", "Load Game",
+    				JOptionPane.QUESTION_MESSAGE, null, allSavedFile, allSavedFile[0]);
+    		if (data.loadBoard((File) file) != null) {
+    			gameBoard = data.loadBoard((File) file);
+    		}
+    		
+    	}
+    	
+    	// check if the loaded game is over, adjust status accordingly
+    	if (gameBoard.EndGame()) {
+    		if (gameBoard.getInCheck() == null) {
+    			status = GameStatus.STALEMATE;
+    		} else {
+    			status = GameStatus.CHECKMATE;
+    		}
+    	}
+    	
+    	// repaint to show changes
+    	SwingUtilities.invokeLater(new Runnable() {
+    		@Override
+    		public void run() {
+    			chessView.getBoardPanel().drawBoard();
+    		}
+    	});
+    }
+    
     private void newGame() {
         this.gameBoard = new Board(true);
         this.status = GameStatus.STARTED;

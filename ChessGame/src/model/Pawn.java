@@ -6,7 +6,11 @@ import java.util.List;
 
 public class Pawn extends Piece {
 
-    public boolean enPassantOK = false; //If this pawn can be captured by a "en Passant move"?
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6012908821570253068L;
+	public boolean enPassantOK = false; //If this pawn can be captured by a "en Passant move"?
 
     public Pawn(Point piecePosition, boolean white) {
         this.piecePosition = piecePosition;

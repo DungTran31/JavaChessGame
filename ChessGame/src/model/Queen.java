@@ -6,7 +6,12 @@ import java.util.List;
 
 public class Queen extends Piece {
 
-    public Queen(Point piecePosition, boolean white) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 433718738747463821L;
+
+	public Queen(Point piecePosition, boolean white) {
         this.piecePosition = piecePosition;
         this.white = white;
         this.firstMove = true;

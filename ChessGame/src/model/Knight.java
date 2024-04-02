@@ -6,7 +6,12 @@ import java.util.List;
 
 public class Knight extends Piece {
 
-    public Knight(Point piecePosition, boolean white) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2691461770869694876L;
+
+	public Knight(Point piecePosition, boolean white) {
         this.piecePosition = piecePosition;
         this.white = white;
         this.firstMove = true;
