@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class Database {
 	 private static String driver = "com.mysql.cj.jdbc.Driver";
 	    private static String url = "jdbc:mysql://localhost:3306/login";
-	    private static String username = "root";
-	    private static String password = "Dgql45311";
+	    private static String username = "";
+	    private static String password = "";
 	    public static Connection mycon() {
 	        Connection con = null;
 	        try {
