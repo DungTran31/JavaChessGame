@@ -53,7 +53,6 @@ public class Ai implements Serializable{
 
     // Returns the value of the best move for the ai for the given board
     private int max(Board game, int depth, int alpha, int beta) {
-        // end search if game over or depth limit reached
         if (depth == 0) {
             return valueOfBoard(game);
         }
@@ -87,8 +86,8 @@ public class Ai implements Serializable{
         return alpha;
     }
 
+ // Returns the value of the best move for player for the given board
     private int min(Board game, int depth, int alpha, int beta) {
-        // end search if game over or depth limit reached
         if (depth == 0) {
             return valueOfBoard(game);
         }
@@ -129,7 +128,30 @@ public class Ai implements Serializable{
         }
         return moves;
     }
+    
+    private int valueOfBoard(Board gameBoard) {
+        int value = 0;
+        int aiPieces = 0;
+        int playerPieces = 0;
+        int aiMoves = 0;
+        int playerMoves = 0;
 
+        for (Piece pc : gameBoard.getAllPieces()) {
+            if (pc.isWhite() == this.white) {
+                aiPieces += valueOfPiece(pc);
+                aiMoves += pc.calculateLegalMoves(gameBoard, true).size();
+            } else {
+                playerPieces += valueOfPiece(pc);
+                playerMoves += pc.calculateLegalMoves(gameBoard, true).size();
+            }
+        }
+
+        value = (aiPieces - playerPieces) + (aiMoves - playerMoves);
+
+        return value;
+    }
+
+    /*
     // Calculates the value of a board for the AI.
     private int valueOfBoard(Board gameBoard) {
         int value = 0;
@@ -180,15 +202,16 @@ public class Ai implements Serializable{
 
         // if a side can make no valid moves, the game is over
         if (gameBoard.isWhiteTurn() == this.white && aiMoves == 0) {
-            // if the ai can make no moves, it has lost. this is bad.
+            // if the ai can make no moves, it has lost. 
             value = Integer.MIN_VALUE;
         } else if (gameBoard.isWhiteTurn() != this.white && playerMoves == 0) {
-            // if the player can make no more moves, we win. this is good.
+            // if the player can make no more moves, we win. 
             value = Integer.MAX_VALUE;
         }
 
         return value;
     }
+    */
 
     // A method for evaluating the value of a piece
     private int valueOfPiece(Piece pc) {

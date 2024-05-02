@@ -12,6 +12,6 @@ public interface GameConstant {
     static final Color DARK_COLOR = Color.decode("#d18b46"); // Color of black cells
     static final Color SELECTED_COLOR = Color.decode("#2596be"); // Cell's color of selected piece
     static final Color MOVE_COLOR = Color.decode("#28a745"); // Possible move of selected piece
-    static final String RESOURCE_PATH = "resources/";
+    static final String RESOURCE_PATH = "D:\\Code\\CNTT_VA_2\\Nam2\\Ki2\\Java\\ChessGame\\resources\\";
     static final Color WARNING_COLOR = Color.decode("#be4d25"); // Cell's color of checked king
 }

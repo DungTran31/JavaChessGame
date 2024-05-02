@@ -20,8 +20,7 @@ public class Data {
 
     public File[] getAllSavedFile() {
         try {
-            // gets all the saved games in the /saves folder
-            File directory = new File("saves");
+            File directory = new File("D:/Code/CNTT_VA_2/Nam2/Ki2/Java/saveGame");
 
             if (!directory.exists()) {
             	directory.mkdir();            	
@@ -49,14 +48,14 @@ public class Data {
         }
 
         // check that the saves folder exists
-        File directory = new File("D:/Code/CNTT_VA_2/Nam2/Ki2/Java/saves");
+        File directory = new File("D:/Code/CNTT_VA_2/Nam2/Ki2/Java/saveGame");
         // creates folder if it doesn't exist
         if (!directory.exists()) {
             directory.mkdir();
         }
 
         // get an ObjectOutputStream for a new save file
-        fos = new FileOutputStream(new File("D:/Code/CNTT_VA_2/Nam2/Ki2/Java/saves/" + name + ".CSV"));
+        fos = new FileOutputStream(new File("D:/Code/CNTT_VA_2/Nam2/Ki2/Java/saveGame/" + name + ".csv"));
         oos = new ObjectOutputStream(fos);
 
         // write the board to the file

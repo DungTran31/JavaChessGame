@@ -22,7 +22,7 @@ import model.Move;
 import model.Piece;
 import view.MenuBar;
 import view.View;
-import view.TilePanel;
+import view.BoardPanel.TilePanel;
 
 public class Controller {
     @SuppressWarnings("unused")
@@ -267,29 +267,45 @@ public class Controller {
     	}
     }
     
-    protected void load() {
+    private void load() {
     	File[] allSavedFile = data.getAllSavedFile();
-    	if (allSavedFile == null) {
-    		JOptionPane.showMessageDialog(this.chessView.getBoardPanel(), "No saved games found", "Load game",
-    				JOptionPane.INFORMATION_MESSAGE);
-    	} else {
-    		Object file = JOptionPane.showInputDialog(this.chessView.getBoardPanel(), "Select save file:", "Load Game",
-    				JOptionPane.QUESTION_MESSAGE, null, allSavedFile, allSavedFile[0]);
-    		if (data.loadBoard((File) file) != null) {
-    			gameBoard = data.loadBoard((File) file);
-    		}
-    		
-    	}
-    	
-    	// check if the loaded game is over, adjust status accordingly
-    	if (gameBoard.EndGame()) {
-    		if (gameBoard.getInCheck() == null) {
-    			status = GameStatus.STALEMATE;
-    		} else {
-    			status = GameStatus.CHECKMATE;
-    		}
-    	}
-    	
+    	if (allSavedFile == null || allSavedFile.length == 0) {
+            JOptionPane.showMessageDialog(
+                this.chessView.getBoardPanel(),
+                "No saved games found",
+                "Load game",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+        } else {
+            String[] fileNames = new String[allSavedFile.length];
+            for (int i = 0; i < allSavedFile.length; i++) {
+                fileNames[i] = allSavedFile[i].getName();
+            }
+
+            Object selectedFileName = JOptionPane.showInputDialog(
+                this.chessView.getBoardPanel(),
+                "Select save file:",
+                "Load Game",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                fileNames,
+                fileNames[0]
+            );
+
+            if (selectedFileName != null) {
+                File selectedFile = new File("D:/Code/CNTT_VA_2/Nam2/Ki2/Java/saveGame/" + selectedFileName);
+                if (data.loadBoard(selectedFile) != null) {
+                    gameBoard = data.loadBoard(selectedFile);
+                }
+            }
+        }
+
+        // Check if the game has ended, adjust the status
+        if (gameBoard.EndGame()) {
+            status = (gameBoard.getInCheck() == null) ? GameStatus.STALEMATE : GameStatus.CHECKMATE;
+        }
+
+   	
     	// repaint to show changes
     	SwingUtilities.invokeLater(new Runnable() {
     		@Override
